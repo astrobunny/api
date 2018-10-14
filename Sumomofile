@@ -1,0 +1,25 @@
+key = hidden_value ENV["CLOUDFLARE_KEY"]
+email = hidden_value ENV["CLOUDFLARE_EMAIL"]
+certificate = hidden_value ENV["ASTROBUNNY_API_CERT"]
+
+api = make_api "#{ENV['ASTROBUNNY_API_HOST']}", name: "API" do
+
+  SCRIPT File.read("methods/init.js")
+
+  file_regex = /^methods(?<path>[^\.]+?)(?<method>get|post|delete|patch|put)_(?<name>[a-z0-9]+).js$/
+  Dir["methods/**/*.js"].each do |filename|
+    m = file_regex.match(filename)
+
+    if m
+      args = [ "#{m[:path]}#{m[:name]}" ]
+
+      m[:path].split("/").each do |x|
+        args << x.sub(/:/, "").to_sym if x.start_with?(":")
+      end
+
+      args << File.read(filename)
+
+      self.send(m[:method].upcase.to_sym, *args)
+    end
+  end
+end

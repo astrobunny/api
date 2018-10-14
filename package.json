@@ -1,0 +1,15 @@
+{
+  "name": "api.astrobunny.net",
+  "version": "1.0.0",
+  "description": "API",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "astrobunny",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "amazon-cognito-identity-js": "^3.0.2",
+    "aws-sdk": "^2.334.0",
+    "node-fetch": "^2.2.0"
+  }
+}

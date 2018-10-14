@@ -1,0 +1,53 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (5.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    aws-sdk (2.11.149)
+      aws-sdk-resources (= 2.11.149)
+    aws-sdk-core (2.11.149)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.11.149)
+      aws-sdk-core (= 2.11.149)
+    aws-sigv4 (1.0.3)
+    concurrent-ruby (1.0.5)
+    hashie (3.6.0)
+    i18n (1.1.0)
+      concurrent-ruby (~> 1.0)
+    jmespath (1.4.0)
+    json (2.1.0)
+    minitest (5.11.3)
+    momo (0.4.1)
+      activesupport
+      aws-sdk-core
+      json
+      trollop
+    rubyzip (1.2.2)
+    s3cabinet (0.1.0)
+      aws-sdk-core
+      json
+    sumomo (0.8.3)
+      activesupport
+      aws-sdk (~> 2)
+      hashie
+      momo (= 0.4.1)
+      rubyzip
+      s3cabinet
+      trollop
+    thread_safe (0.3.6)
+    trollop (2.9.9)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sumomo
+
+BUNDLED WITH
+   1.14.6
