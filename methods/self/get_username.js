@@ -1,3 +1,3 @@
-authenticated(params, respond_with, user => {
-	respond_with ({message: "file"});
+authenticated(params, respond_with, username => {
+	respond_with ({username: username});
 })

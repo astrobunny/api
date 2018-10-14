@@ -6,14 +6,15 @@ api = make_api "#{ENV['ASTROBUNNY_API_HOST']}", name: "API" do
 
   SCRIPT File.read("methods/init.js")
 
-  file_regex = /^methods(?<path>[^\.]+?)(?<method>get|post|delete|patch|put)_(?<name>[a-z0-9]+).js$/
+  file_regex = /^methods(?<path>[^\.]+?)(?<method>get|post|delete|patch|put)_(?<name>[:a-z0-9_]+).js$/
   Dir["methods/**/*.js"].each do |filename|
     m = file_regex.match(filename)
 
     if m
-      args = [ "#{m[:path]}#{m[:name]}" ]
+      fullpath = "#{m[:path]}#{m[:name]}"
+      args = [ fullpath ]
 
-      m[:path].split("/").each do |x|
+      fullpath.split("/").each do |x|
         args << x.sub(/:/, "").to_sym if x.start_with?(":")
       end
 

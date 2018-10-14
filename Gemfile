@@ -1,3 +1,3 @@
 source "https://rubygems.org"
 
-gem "sumomo"
+gem "sumomo", path: "/home/david/programs/sumomo"
