@@ -24,6 +24,14 @@ const cisp = new AWS.CognitoIdentityServiceProvider({region: "ap-northeast-1"});
 
 // === UTILITIES ===
 
+function post_comment(email, name, url, signature, comment, on_success, on_failure)
+{
+  var timestamp = new Date().getTime().toString();
+  var epoch = Math.floor(new Date().getTime()/1000).toString();
+  var key = "comments/"+signature+"/"+timestamp+"_"+email;
+  Store.set(key, {comment: comment, url: url, name: name, email: email, time:epoch}, on_success, on_failure);
+}
+
 function create_api_key(data, on_success, on_failure)
 {
   const hash = crypto.createHmac('sha256', data.cognito.Username)
