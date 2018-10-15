@@ -2,7 +2,8 @@ var name = params.name
 var url = params.url
 var email = params.email
 
-post_comment(email, name, url, signature, params.comment, function()
+var ipaddress = event.requestContext.identity.sourceIp;
+post_comment(email, name, url, signature, params.comment, params.title, ipaddress, function()
 {
 	respond_with ({message: "MESSAGE_COMMENT_POSTED"}, 200);
 },

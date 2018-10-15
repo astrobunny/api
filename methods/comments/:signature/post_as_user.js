@@ -1,6 +1,8 @@
 authenticated(params, respond_with, username => {
 	console.log(params)
-	post_comment(username, username, "/users/?name=username", signature, params.comment, function()
+
+	var ipaddress = event.requestContext.identity.sourceIp;
+	post_comment(username, username, "/users/?name=username", signature, params.comment, params.title, ipaddress, function()
 	{
 		respond_with ({message: "MESSAGE_COMMENT_POSTED"}, 200);
 	},

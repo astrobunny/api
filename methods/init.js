@@ -24,12 +24,18 @@ const cisp = new AWS.CognitoIdentityServiceProvider({region: "ap-northeast-1"});
 
 // === UTILITIES ===
 
-function post_comment(email, name, url, signature, comment, on_success, on_failure)
+function post_comment(email, name, url, signature, comment, title, ipaddress, on_success, on_failure)
 {
   var timestamp = new Date().getTime().toString();
   var epoch = Math.floor(new Date().getTime()/1000).toString();
   var key = "comments/"+signature+"/"+timestamp+"_"+email;
-  Store.set(key, {comment: comment, url: url, name: name, email: email, time:epoch}, on_success, on_failure);
+  Store.set(key, {comment: comment, url: url, name: name, email: email, time:epoch}, 
+    function ()
+    {
+      var userkey = "usercomments/"+email+"/"+timestamp;
+      Store.set(userkey, {title: title, page: signature.substring(5), ip: ipaddress, time:epoch, comment: comment.substring(0,100)}, on_success, on_failure)
+
+    }, on_failure);
 }
 
 function create_api_key(data, on_success, on_failure)
