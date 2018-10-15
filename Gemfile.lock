@@ -1,7 +1,7 @@
 PATH
   remote: /home/david/programs/sumomo
   specs:
-    sumomo (0.8.3)
+    sumomo (0.8.4)
       activesupport
       aws-sdk (~> 2)
       hashie
